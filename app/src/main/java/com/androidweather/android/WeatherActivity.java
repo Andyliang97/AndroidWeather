@@ -11,12 +11,10 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -25,18 +23,17 @@ import android.widget.Toast;
 
 import com.androidweather.android.gson.Forecast;
 import com.androidweather.android.gson.Weather;
+import com.androidweather.android.service.AutoUpdateService;
 import com.androidweather.android.util.HttpUtil;
 import com.androidweather.android.util.Utility;
 import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.HttpUrl;
 import okhttp3.Response;
 
 public class WeatherActivity extends AppCompatActivity {
@@ -233,5 +230,7 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
